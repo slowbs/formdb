@@ -28,11 +28,13 @@
 <div class="container">
   <h1>My First Bootstrap Page</h1>
   <p>This part is inside a .container class.</p> 
-  <p>The .container class provides a responsive fixed width container.</p>           
+  <p>The .container class provides a responsive fixed width container.</p>
+  <div align="right">
   <a href="login.php?logout='1'">ออกจการะบบ</a>
   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" id="<?php echo $v['id'];?>">
     ADD
   </button>
+  </div>
 
   <table class="table">
   <thead>
@@ -59,9 +61,9 @@ try {
       <th scope="row"><?php echo $v['id'];?></th>
       <td><?php echo $v['name'];?></td>
       <td><?php echo $v['tbname'];?></td>
-      <td><button type="button" class="btn btn-primary handle" data-toggle="modal" data-target="#sqlModal" id="<?php echo $v['id'];?>">
+      <td><!-- <button type="button" class="btn btn-primary handle" data-toggle="modal" data-target="#sqlModal" id="<?php echo $v['id'];?>">
     SQL
-  </button>
+  </button> -->
   <button type="button" class="btn btn-warning handle" data-toggle="modal" data-target="#editModal" id="<?php echo $v['id'];?>">
     EDIT
   </button>
@@ -191,6 +193,7 @@ function insertsql(){
     $name = isset($_POST['name']) ? $_POST['name'] : '';
     $tbname = isset($_POST['tbname']) ? $_POST['tbname'] : '';
     $sql = isset($_POST['sql']) ? $_POST['sql'] : '';
+    $sql = addslashes($sql);
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -213,6 +216,7 @@ function updatesql(){
     $name = isset($_POST['name']) ? $_POST['name'] : '';
     $tbname = isset($_POST['tbname']) ? $_POST['tbname'] : '';
     $sql = isset($_POST['sql']) ? $_POST['sql'] : '';
+    $sql = addslashes($sql);
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
