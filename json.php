@@ -32,7 +32,8 @@ try {
             $string .= "`" .$v['Field']. "` " . $v['Type'] . ",";
             }
         $cretable = "CREATE TABLE $tbname (myid INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, ".
-        substr($string, 0, -1) .")";
+        substr($string, 0, -1) .",
+        date_created DATETIME)";
         $stmt = $conn->prepare("$cretable"); 
         $stmt->execute();
     }
@@ -55,7 +56,7 @@ try {
             //ถ้ายังไม่เคยมีการ Inserted จะทำการ Insert เพิ่มเข้าไป
             if ($stmt->rowCount() < 1){
                 $i += 1;
-                $string = "INSERT INTO " .$tbname ." (". substr($field_name, 0, -2) . ") VALUES (" . substr($field_value, 0, -2) . ")" ;
+                $string = "INSERT INTO " .$tbname ." (". substr($field_name, 0, -2) . ", `date_created`) VALUES (" . substr($field_value, 0, -2) . ", NOW())" ;
                 $stmt = $conn->prepare("$string"); 
                 $stmt->execute();
             }
