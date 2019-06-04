@@ -64,6 +64,14 @@
 							</button>
 						</div>
 					</div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<a href="form.php"><button type="button" class="login100-form-btn">
+								Cancel
+							</button></a>
+						</div>
+					</div>
 
 				</form>
 			</div>

@@ -9,7 +9,7 @@
     $duck = $_SESSION['user']['username'];
     $user_type = $_SESSION['user']['user_type'];
 
-    echo $duck ." <br> " . $user_type . "<br>";
+    //echo $duck ." <br> " . $user_type . "<br>";
     include 'db.php';
 ?>
 <!DOCTYPE html>
