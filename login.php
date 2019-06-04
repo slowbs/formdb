@@ -64,10 +64,10 @@
 							</button>
 						</div>
 					</div>
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<a href="form.php"><button type="button" class="login100-form-btn">
+					<div class="container-login200-form-btn">
+						<div class="wrap-login200-form-btn">
+							<div class="login200-form-bgbtn"></div>
+							<a href="form.php"><button type="button" class="login200-form-btn">
 								Cancel
 							</button></a>
 						</div>

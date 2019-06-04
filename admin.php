@@ -22,21 +22,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
 </head>
 <body>
   
-<div class="container">
-  <h1>My First Bootstrap Page</h1>
-  <p>This part is inside a .container class.</p> 
-  <p>The .container class provides a responsive fixed width container.</p>
+<div class="container" align="center">
+  <h1>Admin</h1>
   <div align="right">
-  <a href="login.php?logout='1'">ออกจการะบบ</a>
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal" id="<?php echo $v['id'];?>">
-    ADD
-  </button>
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#InsertModal">INSERT</button>
+  <a href="login.php?logout='1'"><button type="button" class="btn btn-danger">Log out</button></a>
   </div>
-
-  <table class="table">
+<br>
+  <table class="table table-striped table-bordered" id="myTable">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -253,6 +251,7 @@ $(document).ready(function(){
             }
         });
     });
+    $('#myTable').DataTable();
 });
 </script>
 </html>
