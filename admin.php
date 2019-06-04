@@ -3,7 +3,7 @@
 	include('functions.php');
     if (!isAdmin()) {
         $_SESSION['msg'] = "You must log in first";
-        header('location: ../user/login.php');
+        header('location: login.php');
     }
     $id = $_SESSION['user']['id'];
     $duck = $_SESSION['user']['username'];
@@ -132,7 +132,7 @@ $conn = null;
       </div>
       <div class="form-group">
         <label>SQL</label>
-        <textarea class="form-control comMand" id="sql" rows="5" name="sql"></textarea>
+        <textarea class="form-control editcomMand" id="sql" rows="5" name="sql"></textarea>
       </div>
       </div>
       <!-- Modal footer -->
@@ -243,7 +243,7 @@ $(document).ready(function(){
             dataType: "json",
             data: '',
             success:function(v){
-                    $('.comMand').text(v.command);
+                    $('.editcomMand').text(v.command);
                     $('#name').val(v.name);
                     $('#tbname').val(v.tbname);
                     $('#id').val(v.id);
