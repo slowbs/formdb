@@ -47,7 +47,7 @@
   <?php
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("SELECT * from command;"); 
     $stmt->execute();
@@ -193,7 +193,7 @@ function insertsql(){
     $sql = isset($_POST['sql']) ? $_POST['sql'] : '';
     $sql = addslashes($sql);
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conn->prepare("INSERT into command (name, tbname, command) VALUES ('$name', '$tbname', '$sql');"); 
         $stmt->execute();
@@ -216,7 +216,7 @@ function updatesql(){
     $sql = isset($_POST['sql']) ? $_POST['sql'] : '';
     $sql = addslashes($sql);
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $stmt = $conn->prepare("UPDATE command SET name = '$name' , tbname = '$tbname' , command = '$sql' where id = '$id';"); 
         $stmt->execute();

@@ -1,10 +1,10 @@
 <?php
-
-$servername = $_POST['ip'];
-$port = $_POST['port'];
-$dbname = $_POST['db'];
-$username = $_POST['username'];
-$password = $_POST['password'];
+//SELECT ตรวจสอบค่าซ้ำก่อน INSERT โดยใช้วิธี MULTIPLE INSERT SQL
+$servername2 = $_POST['ip'];
+$port2 = $_POST['port'];
+$dbname2 = $_POST['db'];
+$username2 = $_POST['username'];
+$password2 = $_POST['password'];
 $sql = $_POST['sql'];
 $tbname = $_POST['tbname'];
 $field_name = "";
@@ -15,20 +15,23 @@ $chckstring = "";
 $i = $du = '0';
 
 try {
-    $conn = new PDO("mysql:host=$servername:$port;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //สร้าง ตาราง temp จาก query
-    $stmt = $conn->prepare("CREATE TEMPORARY TABLE `temp` $sql;"); 
-    $stmt->execute();
     //เช็คว่าตารางที่จะเก็บข้อมูลมีการสร้างไว้หรือยัง?
+    include 'db.php';
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn2 = new PDO("mysql:host=$servername2:$port2;dbname=$dbname2", $username2, $password2);
+    $conn2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("SELECT table_name as d FROM information_schema.tables where table_schema='formdb' and table_name = '$tbname';"); 
     $stmt->execute();
+    $stmt2 = $conn2->prepare("CREATE TEMPORARY TABLE `temp` $sql;"); 
+    $stmt2->execute();
     //ถ้ายังไม่มีการสร้าง จะทำการ CREATE TABLE โดยอ้างอิง datatype จาก ตาราง temp
     if ($stmt->rowCount() < 1){
-        $stmt = $conn->prepare("DESCRIBE `temp`"); 
-        $stmt->execute();
-        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-        foreach($stmt->fetchAll() as $k=>$v) {
+        //สร้าง ตาราง temp จาก query
+        $stmt2 = $conn2->prepare("DESCRIBE `temp`"); 
+        $stmt2->execute();
+        $result2 = $stmt2->setFetchMode(PDO::FETCH_ASSOC); 
+        foreach($stmt2->fetchAll() as $k=>$v) {
             $string .= "`" .$v['Field']. "` " . $v['Type'] . ",";
             }
         $cretable = "CREATE TABLE $tbname (myid INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, ".
@@ -36,12 +39,13 @@ try {
         date_created DATETIME)";
         $stmt = $conn->prepare("$cretable"); 
         $stmt->execute();
+        //echo $cretable;
     }
         //ดึงข้อมูลที่เคย query ไว้จากตาราง temp
-        $stmt = $conn->prepare("SELECT * from `temp`"); 
-        $stmt->execute();
-        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-        foreach($stmt->fetchAll() as $k=>$v) {
+        $stmt2 = $conn2->prepare("SELECT * from `temp`"); 
+        $stmt2->execute();
+        $result2 = $stmt2->setFetchMode(PDO::FETCH_ASSOC); 
+        foreach($stmt2->fetchAll() as $k=>$v) {
             //เข้าไปในตัว array ย่อย เพื่อ ทำการเก็บ key และ value ของ array แต่ละตัว
             foreach($v as $key => $value){
                 $field_name .= "`" .$key. "`, " ;
@@ -115,4 +119,5 @@ catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 $conn = null;
+$conn2 = null;
 ?>

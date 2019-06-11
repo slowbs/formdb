@@ -18,7 +18,7 @@
 <div align="right">
   <a href="login.php" class="btn btn-success" role="button" aria-pressed="true">เข้าสู่ระบบ</a>
 </div>
-<form action="json.php" method="post">
+<form action="json2.php" method="post">
 <div class="row">
     <div class="col-md">
         <div class="row">
@@ -49,7 +49,7 @@
 include 'db.php';
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("SELECT * from command"); 
     $stmt->execute();
