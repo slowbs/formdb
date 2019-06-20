@@ -77,7 +77,6 @@ $conn = null;
 </form> 
 </div>
 </div>
-<!-- <?php print_r($tbname);?> -->
 </body>
 <script>
 $( document ).ready(function() {
