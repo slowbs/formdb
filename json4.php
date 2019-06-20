@@ -74,18 +74,20 @@ try {
             $cretable = "CREATE TABLE `".$ran."` (".
             substr($string, 0, -1) .",
             date_created DATETIME)";
-            $stmt = $conn->prepare("$cretable"); 
+            $drop = "DROP TABLE `".$ran."`";
+            $sql2 = $cretable.";".$string4.";".$condition2.";".$drop.";";
+            //echo $sql2;
+            $stmt = $conn->prepare("$sql2"); 
             $stmt->execute();
-            $stmt = $conn->prepare("$string4"); 
+            /* $stmt = $conn->prepare("$string4"); 
             $stmt->execute();
             $stmt = $conn->prepare("$condition2"); 
             $stmt->execute();
+            $stmt = $conn->prepare("$drop"); 
+            $stmt->execute(); */
             $stmt = $conn->prepare("$loaddata"); 
             $stmt->execute();
             $count = $stmt->rowCount();
-            $drop = "DROP TABLE `".$ran."`";
-            $stmt = $conn->prepare("$drop"); 
-            $stmt->execute();
             unlink("C:/xampp/htdocs/github/formdb/file/".$ran.".txt");
             echo "เพิ่มทั้งหมด " . $count . " รายการ <BR>";
             /* echo $cretable ."; <BR>";
