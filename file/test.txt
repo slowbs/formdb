@@ -1,0 +1,9 @@
+1	00400	select * from province where kpiid = '00400'	nn
+2	00100	select * from province where kpiid = '00100'	
+3	show table	show tables from pdc	uu
+4	all	select * from province 	eiei
+5	showfield	select * from command	rr
+16	อินพุท รพสต.	select * from input_client	kpi_input_client
+17	อินพุท อำเภอ	select * from input_amphur	kpi_input_amphur
+18	412424	select * from motherfather where 1	124124
+19	test	'ยู ' "\\@'ลุค เพอเฟ็ก ทะไนท์"	insert 

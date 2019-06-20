@@ -18,7 +18,7 @@
 <div align="right">
   <a href="login.php" class="btn btn-success" role="button" aria-pressed="true">เข้าสู่ระบบ</a>
 </div>
-<form action="json2.php" method="post">
+<form action="json4.php" method="post">
 <div class="row">
     <div class="col-md">
         <div class="row">

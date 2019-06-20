@@ -19,7 +19,7 @@ try {
     include 'db.php';
     $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $conn2 = new PDO("mysql:host=$servername2:$port2;dbname=$dbname2", $username2, $password2);
+    $conn2 = new PDO("mysql:host=$servername2:$port2;dbname=$dbname2;charset=utf8", $username2, $password2);
     $conn2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("SELECT table_name as d FROM information_schema.tables where table_schema='formdb' and table_name = '$tbname';"); 
     $stmt->execute();

@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
 $dbname = "formdb";
-$username = "slowbs";
-$password = "sodsongig4";
+$username = "root";
+$password = "1596321";
 ?>
