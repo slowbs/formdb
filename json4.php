@@ -82,6 +82,11 @@ try {
             $count = $stmt->rowCount();
             unlink("C:/xampp/htdocs/github/formdb/file/".$ran.".txt");
             echo "เพิ่มทั้งหมด " . $count . " รายการ <BR>";
+            ?>
+            <div align="left">
+            <a href="form.php" class="btn btn-success" role="button" aria-pressed="true">หน้าหลัก</a>
+            </div>
+            <?php 
             /* echo $cretable ."; <BR>";
             echo $string4 ."; <BR>";
             echo $condition2 ."; <BR>";
