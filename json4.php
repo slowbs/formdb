@@ -7,16 +7,10 @@ $username2 = $_POST['username'];
 $password2 = $_POST['password'];
 $sql = $_POST['sql'];
 $tbname = $_POST['tbname'];
-$field_name = "";
-$field_name2 = "";
-$field_value = "";
-$field_value2 = "";
-$condition = "";
+$field_name = $field_name2 = $field_value = $field_value2 = $condition = "";
 $ran = rand () ;
 $string = "";
-$chck = "";
-$chckstring = "";
-$i = $du = '0';
+
 
 try {
     //เช็คว่าตารางที่จะเก็บข้อมูลมีการสร้างไว้หรือยัง?
@@ -62,9 +56,7 @@ try {
             $field_value2 .= "(" . substr($field_value, 0, -2) .", NOW()), ";
             $condition2 = "SELECT * INTO OUTFILE 'C:/xampp/htdocs/github/formdb/file/".$ran.".txt' FROM `".$ran."` WHERE NOT EXISTS ( SELECT * FROM `".$tbname."` where "
             . substr($condition, 0, -4) .")";
-            $field_name = "";
-            $field_value = "";
-            $condition = "";
+            $field_name = $field_value = $condition = "";
             }
             
             $string4 = $field_name2 . $field_value2;
